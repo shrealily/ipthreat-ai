@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IPthreat AI — Unidirectional SOC Dashboard</title>
+    <meta name="description" content="Professional Security Operations Center (SOC) dashboard for an AI-powered platform detecting cyber threats in unidirectional (one-way) IP traffic." />
+    <meta property="og:title" content="IPthreat AI — Unidirectional SOC Dashboard" />
+    <meta property="og:description" content="Professional Security Operations Center (SOC) dashboard for an AI-powered platform detecting cyber threats in unidirectional (one-way) IP traffic." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('ipthreat_theme');
+          if (!saved) {
+            var rawSettings = localStorage.getItem('ipthreat_settings_v1');
+            if (rawSettings) {
+              var parsed = JSON.parse(rawSettings);
+              saved = parsed.theme;
+            }
+          }
+          var theme = (saved === 'light') ? 'light' : 'dark';
+          if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('light');
+            document.documentElement.setAttribute('data-theme', 'dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.classList.add('light');
+            document.documentElement.setAttribute('data-theme', 'light');
+          }
+        } catch (e) {
+          document.documentElement.classList.add('dark');
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
+  </head>
+  <body class="bg-[var(--bg-app)] text-[var(--text-main)] antialiased selection:bg-[var(--primary-teal)]/20 selection:text-[var(--primary-teal)] min-h-screen overflow-x-hidden">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

@@ -1,0 +1,8 @@
+{
+  "name": "IPthreat AI",
+  "description": "Professional Security Operations Center (SOC) dashboard for an AI-powered platform detecting cyber threats in unidirectional (one-way) IP traffic.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

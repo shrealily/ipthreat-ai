@@ -1,0 +1,327 @@
+@import "tailwindcss";
+
+@layer base {
+  :root, [data-theme='dark'], .dark {
+    /* Dark mode palette (Default) */
+    --bg-app: #171B1B;
+    --bg-card: #202727;
+    --bg-card-subtle: #1A2121;
+    --bg-card-hover: #283131;
+    --border-app: #34403F;
+    --border-subtle: #293433;
+    --text-main: #DCE5E2;
+    --text-muted: #A8B7B4;
+    --primary-teal: #6D9C98;
+    --secondary-teal: #507774;
+    --accent-teal: #6D9C98;
+    
+    --sev-low: #5C8D6B;
+    --sev-med: #C49A50;
+    --sev-high: #C87545;
+    --sev-crit: #C45B59;
+    --sev-crit-glow: rgba(196, 91, 89, 0.45);
+  }
+
+  [data-theme='light'], .light {
+    /* Light mode palette (User Requested) */
+    --bg-app: #EDEBE8;
+    --bg-card: #FAF9F7;
+    --bg-card-subtle: #F2EFEA;
+    --bg-card-hover: #ECE7E0;
+    --border-app: #DCD9D4;
+    --border-subtle: #E6E2DC;
+    --text-main: #232220;
+    --text-muted: #6F6D69;
+    --primary-teal: #4C5A70;
+    --secondary-teal: #3B475A;
+    --accent-teal: #4C5A70;
+    
+    --sev-low: #2F7A6C;
+    --sev-med: #A9781E;
+    --sev-high: #B85C1E;
+    --sev-crit: #A6332B;
+    --sev-crit-glow: rgba(166, 51, 43, 0.35);
+  }
+
+  html {
+    color-scheme: dark;
+    background-color: var(--bg-app);
+    color: var(--text-main);
+  }
+
+  html.light, html[data-theme='light'] {
+    color-scheme: light;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg-app);
+    color: var(--text-main);
+  }
+
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+
+  .font-display {
+    font-family: 'Chakra Petch', 'Inter', sans-serif;
+  }
+}
+
+/* Quick smooth transition rather than an instant flash when switching */
+body, #soc-sidebar, #soc-topbar, #soc-main-viewport,
+nav, header, aside, main, section, footer, article, div, table, tr, th, td,
+button, input, select, textarea, kbd {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Exclude active motion / continuous animations from transition overriding */
+.animate-spin, .animate-ping, .animate-pulse, .animate-bounce, [class*="animate-"] {
+  transition-property: background-color, border-color, color;
+}
+
+/* Universal Theme Mapping Layer: maps previous arbitrary hex classes to theme variables */
+.bg-white {
+  background-color: var(--bg-card) !important;
+}
+
+.bg-\[\#F6F7F5\] {
+  background-color: var(--bg-app) !important;
+}
+
+.bg-\[\#F8FAF9\], .bg-\[\#F0F4F2\], .bg-\[\#1A2121\] {
+  background-color: var(--bg-card-subtle) !important;
+}
+
+.bg-\[\#EEF3F5\], .bg-\[\#EEF3F2\], .bg-\[\#F8FAFA\], .bg-\[\#283131\] {
+  background-color: var(--bg-card-hover) !important;
+}
+
+.border-\[\#DCE3E3\], .border-\[\#34403F\], .border-\[\#CBD5E1\] {
+  border-color: var(--border-app) !important;
+}
+
+.border-\[\#E8EFEF\], .border-\[\#293433\], .border-\[\#E2E8F0\] {
+  border-color: var(--border-subtle) !important;
+}
+
+.text-\[\#263238\], .text-\[\#DCE5E2\] {
+  color: var(--text-main) !important;
+}
+
+.text-\[\#718096\], .text-\[\#A8B7B4\], .text-\[\#4A5568\] {
+  color: var(--text-muted) !important;
+}
+
+/* Interactive accent */
+.text-\[\#173F4F\], .text-\[\#6D9C98\], .text-\[\#2F6978\] {
+  color: var(--primary-teal) !important;
+}
+
+.bg-\[\#173F4F\], .bg-\[\#6D9C98\] {
+  background-color: var(--primary-teal) !important;
+}
+
+.border-\[\#173F4F\], .border-\[\#6D9C98\] {
+  border-color: var(--primary-teal) !important;
+}
+
+/* Severity mappings */
+.text-\[\#B94A48\], .text-\[\#C45B59\] {
+  color: var(--sev-crit) !important;
+}
+
+.bg-\[\#B94A48\], .bg-\[\#C45B59\] {
+  background-color: var(--sev-crit) !important;
+}
+
+.border-\[\#B94A48\], .border-\[\#C45B59\] {
+  border-color: var(--sev-crit) !important;
+}
+
+.text-\[\#C87545\] {
+  color: var(--sev-high) !important;
+}
+
+.bg-\[\#C87545\] {
+  background-color: var(--sev-high) !important;
+}
+
+.border-\[\#C87545\] {
+  border-color: var(--sev-high) !important;
+}
+
+.text-\[\#C39A45\], .text-\[\#C49A50\] {
+  color: var(--sev-med) !important;
+}
+
+.bg-\[\#C39A45\], .bg-\[\#C49A50\] {
+  background-color: var(--sev-med) !important;
+}
+
+.border-\[\#C39A45\], .border-\[\#C49A50\] {
+  border-color: var(--sev-med) !important;
+}
+
+.text-\[\#5C8D6B\] {
+  color: var(--sev-low) !important;
+}
+
+.bg-\[\#5C8D6B\] {
+  background-color: var(--sev-low) !important;
+}
+
+.border-\[\#5C8D6B\] {
+  border-color: var(--sev-low) !important;
+}
+
+/* Opacity variants */
+[class*="bg-\[\#173F4F\]\/"], [class*="bg-\[\#6D9C98\]\/"] {
+  background-color: color-mix(in srgb, var(--primary-teal) 14%, transparent) !important;
+}
+
+[class*="border-\[\#173F4F\]\/"], [class*="border-\[\#6D9C98\]\/"] {
+  border-color: color-mix(in srgb, var(--primary-teal) 28%, transparent) !important;
+}
+
+[class*="bg-\[\#B94A48\]\/"], [class*="bg-\[\#C45B59\]\/"] {
+  background-color: color-mix(in srgb, var(--sev-crit) 14%, transparent) !important;
+}
+
+[class*="border-\[\#B94A48\]\/"], [class*="border-\[\#C45B59\]\/"] {
+  border-color: color-mix(in srgb, var(--sev-crit) 28%, transparent) !important;
+}
+
+[class*="bg-\[\#C87545\]\/"] {
+  background-color: color-mix(in srgb, var(--sev-high) 14%, transparent) !important;
+}
+
+[class*="border-\[\#C87545\]\/"] {
+  border-color: color-mix(in srgb, var(--sev-high) 28%, transparent) !important;
+}
+
+[class*="bg-\[\#C39A45\]\/"], [class*="bg-\[\#C49A50\]\/"] {
+  background-color: color-mix(in srgb, var(--sev-med) 14%, transparent) !important;
+}
+
+[class*="border-\[\#C39A45\]\/"], [class*="border-\[\#C49A50\]\/"] {
+  border-color: color-mix(in srgb, var(--sev-med) 28%, transparent) !important;
+}
+
+[class*="bg-\[\#5C8D6B\]\/"] {
+  background-color: color-mix(in srgb, var(--sev-low) 14%, transparent) !important;
+}
+
+[class*="border-\[\#5C8D6B\]\/"] {
+  border-color: color-mix(in srgb, var(--sev-low) 28%, transparent) !important;
+}
+
+/* Hover mappings */
+.hover\:bg-\[\#F6F7F5\]:hover {
+  background-color: var(--bg-card-hover) !important;
+}
+
+.hover\:bg-\[\#EEF3F2\]:hover {
+  background-color: var(--bg-card-hover) !important;
+}
+
+.hover\:text-\[\#173F4F\]:hover, .hover\:text-\[\#6D9C98\]:hover {
+  color: var(--primary-teal) !important;
+}
+
+.hover\:text-\[\#263238\]:hover, .hover\:text-\[\#DCE5E2\]:hover {
+  color: var(--text-main) !important;
+}
+
+.hover\:border-\[\#173F4F\]:hover, .hover\:border-\[\#6D9C98\]:hover {
+  border-color: var(--primary-teal) !important;
+}
+
+.hover\:border-\[\#DCE3E3\]:hover, .hover\:border-\[\#34403F\]:hover {
+  border-color: var(--border-app) !important;
+}
+
+/* SVG Fill and Stroke Mappings */
+svg [fill="#173F4F"], svg [fill="#6D9C98"] {
+  fill: var(--primary-teal) !important;
+}
+
+svg [stroke="#173F4F"], svg [stroke="#6D9C98"] {
+  stroke: var(--primary-teal) !important;
+}
+
+svg [fill="#B94A48"], svg [fill="#C45B59"] {
+  fill: var(--sev-crit) !important;
+}
+
+svg [stroke="#B94A48"], svg [stroke="#C45B59"] {
+  stroke: var(--sev-crit) !important;
+}
+
+svg [fill="#718096"], svg [fill="#A8B7B4"] {
+  fill: var(--text-muted) !important;
+}
+
+svg [stroke="#CBD5E1"], svg [stroke="#E2E8F0"], svg [stroke="#DCE3E3"], svg [stroke="#34403F"] {
+  stroke: var(--border-app) !important;
+}
+
+svg [fill="#F1F5F5"], svg [fill="#F8FAF9"], svg [fill="#E6F4F1"], svg [fill="#1A2121"] {
+  fill: var(--bg-card-subtle) !important;
+}
+
+/* Critical Pulse / Glow adjustments */
+.pulse-critical {
+  box-shadow: 0 0 12px var(--sev-crit-glow);
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-app);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Subtle, non-neon threat highlights */
+@keyframes threat-soft-fade {
+  0% {
+    background-color: color-mix(in srgb, var(--primary-teal) 18%, transparent);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+.animate-new-threat {
+  animation: threat-soft-fade 3s ease-out forwards;
+}
+
+/* Simple fade-in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out forwards;
+}
