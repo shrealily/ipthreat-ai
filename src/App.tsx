@@ -28,22 +28,11 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
 
-  // Splash intro state: only play once per visit (sessionStorage)
-  const [showSplash, setShowSplash] = useState<boolean>(() => {
-    try {
-      return !sessionStorage.getItem('ipthreat_splash_shown');
-    } catch {
-      return false;
-    }
-  });
+  // Splash intro state: always shown on opening/refresh (and replayable from logo or menu)
+  const [showSplash, setShowSplash] = useState<boolean>(true);
 
   const handleSplashComplete = useCallback(() => {
     setShowSplash(false);
-    try {
-      sessionStorage.setItem('ipthreat_splash_shown', 'true');
-    } catch {
-      // ignore
-    }
   }, []);
 
   // Allow any keypress to skip splash
@@ -194,6 +183,7 @@ export default function App() {
         activeIncidentsCount={activeIncidentsCount}
         isMobileOpen={isMobileMenuOpen}
         onCloseMobile={() => setIsMobileMenuOpen(false)}
+        onReplaySplash={() => setShowSplash(true)}
       />
 
       {/* Main Content Pane */}
@@ -207,6 +197,7 @@ export default function App() {
           onOpenHelp={() => setIsHelpModalOpen(true)}
           onNavigatePage={(pageId) => setActivePage(pageId as NavPageId)}
           onToggleMobileMenu={() => setIsMobileMenuOpen((prev) => !prev)}
+          onReplaySplash={() => setShowSplash(true)}
         />
 
         {/* Scrollable Main Content Area */}

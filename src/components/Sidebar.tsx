@@ -25,6 +25,7 @@ interface SidebarProps {
   activeIncidentsCount?: number;
   isMobileOpen?: boolean;
   onCloseMobile?: () => void;
+  onReplaySplash?: () => void;
 }
 
 interface NavItem {
@@ -43,6 +44,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   activeIncidentsCount,
   isMobileOpen,
   onCloseMobile,
+  onReplaySplash,
 }) => {
   const mainNavItems: NavItem[] = [
     {
@@ -135,8 +137,19 @@ export const Sidebar: React.FC<SidebarProps> = ({
       >
         {/* Brand Header */}
         <div className="p-4 border-b border-[#DCE3E3] flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-[var(--primary-teal)] text-[var(--bg-card)] shadow-xs">
+          <button
+            onClick={() => {
+              if (onReplaySplash) {
+                if (onCloseMobile) onCloseMobile();
+                onReplaySplash();
+              } else {
+                handleNavClick('dashboard');
+              }
+            }}
+            className="flex items-center gap-3 text-left hover:opacity-85 transition-opacity cursor-pointer select-none"
+            title="IPthreat AI (Tap to view Welcome Screen)"
+          >
+            <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-[var(--primary-teal)] text-[var(--bg-card)] shadow-xs shrink-0">
               <Shield className="w-5 h-5 text-[var(--bg-card)]" />
             </div>
             <div>
@@ -153,7 +166,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 UNIDIRECTIONAL SOC
               </p>
             </div>
-          </div>
+          </button>
 
           {/* Close button for Mobile Drawer */}
           {onCloseMobile && (
